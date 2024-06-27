@@ -1,0 +1,62 @@
+.Button {
+    padding: 10px 16px;
+    border-radius: var(--border-radius);
+    border: 1px solid transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Colors */
+.Button_color_primary {
+    background-color: var(--primary-color);
+    border-color:var(--primary-color);
+    color: var(--primary-color);
+}
+
+.Button_color_primary:hover {
+    background-color: var(--hover-primary-color);
+    border-color:var(--hover-primary-color);
+    color: var(--hover-primary-color);
+}
+
+.Button_color_danger {
+    background-color: var(--error-color);
+    border-color:var(--error-color);
+    color: var(--error-color);
+}
+
+.Button_color_danger:hover {
+    background-color: var(--error-color);
+    border-color:var(--error-color);
+    color: var(--error-color);
+}
+
+/* Variants */
+.Button_variant_solid,
+.Button_variant_solid:hover {
+    color: #fff;
+}
+
+.Button_variant_bordered:not(:hover) {
+    background-color: transparent;
+}
+
+.Button_disabled,
+.Button_isLoading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.Button_variant_solid .Button__loader > div > div {
+    border-color: #fff transparent transparent transparent;
+}
+
+.Button .Button__loader {
+    width: auto;
+}
+
+.Button:active {
+    filter: brightness(90%);
+}
+
+

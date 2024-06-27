@@ -1,0 +1,10 @@
+@import url("normilize.css");
+@import url("variables.css");
+@import url("fonts.css");
+
+* {
+    box-sizing: border-box;
+    font-family: Inter, sans-serif;
+    font-size: var(--body-font-size);
+    line-height: var(--body-line-height);
+}
