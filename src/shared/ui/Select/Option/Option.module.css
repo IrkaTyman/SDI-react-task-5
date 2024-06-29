@@ -4,8 +4,10 @@
     cursor: pointer;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: var(--font-size-m);
-    padding: 8px;
+    font-size: var(--body-font-size);
+    line-height: var(--body-line-height);
+    padding: 10px 12px;
+    border-radius: var(--border-radius);
     box-sizing: border-box;
 }
 
@@ -18,13 +20,13 @@
 }
 
 .Option__spoilerSummary {
-    padding: 8px 8px 8px var(--parent-option-padding);
+    padding: 10px 12px 10px var(--parent-option-padding);
 }
 
 .Option:hover,
 .Option__spoilerSummary:hover,
 .Option__spoilerSummary:hover .Option {
-    background-color: var(--surface-primary-color);
+    background-color: #FAFAFA;
 }
 
 .Option.Option_selected,
@@ -36,13 +38,12 @@
 .Option.Option_selected.Option_isMultiSelect,
 .Option__spoilerSummary.Option__spoilerSummary_isMultiSelect.Option__spoilerSummary_selected{
     color: #000;
-    background-color: var(--on-surface-color);
 }
 
 .Option.Option_selected.Option_isMultiSelect:hover,
 .Option__spoilerSummary.Option__spoilerSummary_isMultiSelect.Option__spoilerSummary_selected:hover,
 .Option__spoilerSummary.Option__spoilerSummary_isMultiSelect.Option__spoilerSummary_selected:hover .Option.Option_selected.Option_isMultiSelect{
-    background-color: var(--surface-primary-color);
+    background-color: #FAFAFA;
 }
 
 .Option__spoilerContent {

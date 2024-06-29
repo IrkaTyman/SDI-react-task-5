@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import ExpandIconSvg from '@shared/assets/icons/ChevronDown.svg';
+import ArrowSquareUp from '@shared/assets/icons/ArrowSquareUp.svg';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
 
@@ -34,7 +34,7 @@ export const ExpandIcon: FC<Props> = typedMemo(function ExpandIcon({
     'data-testid': dataTestId = 'ExpandIcon',
 }: Props) {
     return (
-        <ExpandIconSvg
+        <ArrowSquareUp
             className={
                 getBemClasses(
                     styles,

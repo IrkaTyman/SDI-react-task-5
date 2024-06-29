@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 
-import Cross from '@shared/assets/icons/Cross.svg';
+import Cross from '@shared/assets/icons/Close.svg';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
 import { Button, FlexContainer, Text } from '@shared/ui';

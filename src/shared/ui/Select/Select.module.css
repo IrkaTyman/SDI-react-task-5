@@ -1,34 +1,33 @@
 .Select {
-    border: solid 1px var(--border-on-surface-color);
-    border-radius: var(--border-radius-m);
-    padding: 7px 6px 7px 16px;
+    border: solid 1px var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 10px 16px;
     transition: border-color 100ms;
     width: 100% !important;
 }
 
-.Select input {
-    border-color: var(--border-on-surface-color) !important;
-}
-
 .Select_disabled {
-    background-color: var(--surface-color);
+    opacity: var(--disabled-opacity);
 }
 
 .Select_invalid {
-    border-color: var(--danger-color);
+    border-color: var(--error-color);
 }
 
-.Select:hover,
+.Select:hover {
+    border-color: var(--hover-border-color);
+}
+
 .Select:focus {
     border-color: var(--primary-color);
 }
 
 .Select_disabled:hover {
-    border-color: var(--border-on-surface-color);
+    border-color: var(--border-color);
 }
 
 .Select_isExpanded {
-    border-color: var(--active-primary-color);
+    border-color: var(--primary-color);
 }
 
 .Select__label {
@@ -39,13 +38,13 @@
 .Select__labelTextCount {
     overflow: hidden;
     text-overflow: ellipsis;
-    color: var(--secondary-text-color);
+    color: var(--help-text-color);
     white-space: nowrap;
-    border-top-left-radius: var(--border-radius-m);
+    border-top-left-radius: var(--border-radius);
 }
 
 .Select_disabled .Select__labelText {
-    color: var(--secondary-text-color);
+    color: var(--help-text-color);
 }
 
 .Select__labelTextCount {
@@ -54,7 +53,7 @@
     top: 0;
     left: 0;
     padding: var(--space-s);
-    border-bottom-right-radius: var(--border-radius-s);
+    border-bottom-right-radius: var(--border-radius);
 }
 
 .Select_width_fit-parent {
@@ -67,6 +66,7 @@
 
 .Select__contentContainer {
     --option-padding: 10px;
+    padding: 8px;
 }
 
 .Select > .Select__contentContainer {
@@ -77,17 +77,9 @@
     overflow: hidden auto;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 10%), 0 4px 11px rgb(0 0 0 / 10%);
     background-color: white;
-    border-radius: var(--border-radius-m);
+    border-radius: var(--border-radius);
     margin-bottom: 8px;
     margin-top: 1px;
-}
-
-.Select__contentContainer input {
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid var(--border-on-surface-color);
-    padding: var(--space-s) 20px;
-    line-height: 1.5;
 }
 
 .Select__labelText {
@@ -96,7 +88,7 @@
 }
 
 .Select__labelText, .Select__labelText_isChosen.Select__labelText_isMultiSelect {
-    color: #939daa
+    color: var(--help-text-color)
 }
 
 .Select__labelText_isChosen {

@@ -1,4 +1,4 @@
-import { ChangeEventHandler, DetailedHTMLProps, forwardRef, InputHTMLAttributes, useCallback } from 'react';
+import {ChangeEventHandler, DetailedHTMLProps, forwardRef, InputHTMLAttributes, ReactNode, useCallback} from 'react';
 
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
@@ -10,6 +10,7 @@ export type Props = TestProps
     & DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> &
     Readonly<{
     invalid?: boolean;
+    startContent?: ReactNode;
     }>;
 
 /**
@@ -17,6 +18,7 @@ export type Props = TestProps
  */
 export const Input = typedMemo(forwardRef<HTMLInputElement, Props>(function Input({
     invalid,
+    startContent,
     className,
     type,
     onChange: innerOnChange,
@@ -35,19 +37,21 @@ export const Input = typedMemo(forwardRef<HTMLInputElement, Props>(function Inpu
     }, [innerOnChange, type]);
 
     return (
-        <input
-            {...inputProps}
-            onChange={onChange}
-            type={type === 'number' ? 'string' : type}
-            className={
-                getBemClasses(
-                    styles,
-                    null,
-                    { invalid },
-                    className,
-                )
-            }
-            ref={propsRef}
-        />
+        <label
+            className={getBemClasses(
+            styles,
+            null,
+            {invalid},
+            className,
+        )}>
+            {startContent}
+            <input
+                {...inputProps}
+                onChange={onChange}
+                type={type === 'number' ? 'string' : type}
+                className={getBemClasses(styles, 'input')}
+                ref={propsRef}
+            />
+        </label>
     );
 }));

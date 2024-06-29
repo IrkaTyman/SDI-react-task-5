@@ -1,6 +1,5 @@
 .ExpandIcon {
-    transition: transform 100ms;
-    stroke: #ABAFB2;
+    fill: #999FA6;
 }
 
 .ExpandIcon_expandedDirection_right.ExpandIcon_isExpanded {
