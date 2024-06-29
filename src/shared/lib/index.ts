@@ -4,3 +4,5 @@ export * from './typedMemo';
 
 export * from './axios/replaceIfEmpty';
 export * from './axios/extractData';
+
+export * from './TokenService';

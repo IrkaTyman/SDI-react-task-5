@@ -101,10 +101,8 @@ export const Modal: FC<Props> = typedMemo(function Modal({
                     {showClosingCross
                         ? <Button
                             onClick={onClose}
-                            isIconButton
-                            size="small"
                             className={getBemClasses(styles, 'closeButton')}
-                            variant="flat"
+                            variant="bordered"
                         >
                             <Cross className={getBemClasses(styles, 'closeButtonIcon')} />
                         </Button>

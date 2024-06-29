@@ -1,8 +1,7 @@
 import { FC, PropsWithChildren, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { useAuthContext } from '@app/providers/AuthProvider';
-
+import { useAppSelector } from '@shared/config/redux';
 import { typedMemo } from '@shared/lib';
 
 type Props = PropsWithChildren & {};
@@ -11,7 +10,7 @@ export const ProtectRoute: FC<Props> = typedMemo(function ProtectRoute({
     children,
 }) {
     const navigate = useNavigate();
-    const { isAuth } = useAuthContext();
+    const isAuth = useAppSelector(state => state.auth.isAuth);
     const [searchParams] = useSearchParams();
 
     useEffect(() => {

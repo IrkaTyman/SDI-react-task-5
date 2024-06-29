@@ -1,0 +1,13 @@
+.Header {
+    padding: 24px 32px;
+    background-color: #333333;
+    width: 100%;
+}
+
+.Header__logo {
+    color: #fff;
+    font-size: var(--header-3-line-height);
+    line-height: 37.5px;
+    font-weight: var(--font-weight-bold);
+}
+

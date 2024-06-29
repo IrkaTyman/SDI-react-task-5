@@ -6,15 +6,17 @@ import App from './app/App';
 import '@shared/config/i18n';
 import { ErrorBoundary } from '@app/providers/ErrorBoundary';
 
-import { AuthContextProvider } from '@app/providers/AuthProvider';
+import { Provider } from 'react-redux';
+
+import { store } from '@shared/config/redux';
 
 const root = createRoot(document.getElementById('root')!);
 root.render(
     <ErrorBoundary>
-        <BrowserRouter>
-            <AuthContextProvider>
-                    <App />
-            </AuthContextProvider>
-        </BrowserRouter>
+        <Provider store={store}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </Provider>
     </ErrorBoundary>,
 );

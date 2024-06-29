@@ -63,8 +63,6 @@ export const SelectedItemBadge = typedMemo(function SelectedItem<TValue extends 
 
             {!disabled &&
                 <Button
-                    variant="flat"
-                    color="default"
                     key={`${item.value}.removeButton`}
                     onClick={onClickHandler}
                     className={getBemClasses(styles, 'removeButton')}
