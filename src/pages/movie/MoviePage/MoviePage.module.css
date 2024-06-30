@@ -1,3 +1,50 @@
 .MoviePage {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    background-color: var(--background-color);
+}
 
+.MoviePage__content {
+    width: 100%;
+    padding: 20px 32px;
+}
+
+.MoviePage__card {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    padding: var(--space-l);
+}
+
+.MoviePage__avatar {
+    width: 400px;
+    height: 500px;
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+}
+
+.MoviePage__title {
+    font-size: var(--header-3-font-size);
+    line-height: var(--header-3-font-size);
+    font-weight: var(--font-weight-bold);
+}
+
+.MoviePage__paramName {
+    white-space: nowrap;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--subheader-font-size);
+    line-height: var(--subheader-line-height);
+}
+
+.MoviePage__paramValue {
+    max-width: 100%;
+    flex: 1;
+    font-size: var(--subheader-font-size);
+    line-height: var(--subheader-line-height);
+}
+
+.MoviePage__info {
+    flex: 1;
+    width: 100%;
 }

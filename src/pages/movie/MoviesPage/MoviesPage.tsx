@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 
 import { Header } from '@widgets/Header';
 
@@ -10,7 +10,7 @@ import { MovieCard } from '@entities/movie/ui/MovieCard';
 
 import Search from '@shared/assets/icons/Search.svg';
 import { useGetMoviesQuery } from '@shared/config/redux/services/movieService';
-import { useDebounceState } from '@shared/hooks';
+import { useDebounceState, useSearchParamState } from '@shared/hooks';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
 import { FlexContainer, Input, renderOption, Select, SelectItem, Text } from '@shared/ui';
@@ -36,16 +36,30 @@ export const MoviesPage: FC<Props> = typedMemo(function MoviesPage({
     const [search, setSearch] = useState('');
     const debounceSearch = useDebounceState(search, 300);
 
-    const [selectedGenres, setSelectedGenres] = useState<SelectItem<string>[]>([genresOptions[0]]);
-    const [selectedYears, setSelectedYears] = useState<SelectItem<string>[]>([yearsOptions[0]]);
+    const [selectedGenreId, setSelectedGenreId] = useSearchParamState('genre');
+    const [selectedYearId, setSelectedYearId] = useSearchParamState('year');
+
+    const [selectedGenres, setSelectedGenres] = useState<SelectItem<string>[]>(genresOptions.filter(genre => genre.value === (selectedGenreId ?? '0')));
+    const [selectedYears, setSelectedYears] = useState<SelectItem<string>[]>(yearsOptions.filter(year => year.value === (selectedYearId ?? '0')));
 
     const params = useMemo<MovieParams>(() => ({
         title: debounceSearch,
         releaseYear: selectedYears[0]?.value === '0' ? undefined : selectedYears[0]?.value ?? undefined,
         genre: selectedGenres[0]?.value === '0' ? undefined : selectedGenres[0]?.value ?? undefined,
     }), [debounceSearch, selectedGenres, selectedYears]);
-
     const { data, isLoading } = useGetMoviesQuery(params);
+
+    useEffect(() => {
+        if (selectedGenreId !== selectedGenres[0].value) {
+            setSelectedGenres(genresOptions.filter(genre => genre.value === (selectedGenreId ?? '0')));
+        }
+    }, [selectedGenreId]);
+
+    useEffect(() => {
+        if (selectedYearId !== selectedYears[0].value) {
+            setSelectedYears(yearsOptions.filter(year => year.value === (selectedYearId ?? '0')));
+        }
+    }, [selectedGenreId]);
 
     return (
         <div
@@ -78,7 +92,10 @@ export const MoviesPage: FC<Props> = typedMemo(function MoviesPage({
                         </Text>
                         <Select
                             selectedValues={selectedGenres}
-                            onSelect={setSelectedGenres}
+                            onSelect={items => {
+                                setSelectedGenres(items);
+                                setSelectedGenreId(items[0].value);
+                            }}
                         >
                             {genresOptions.map(renderOption)}
                         </Select>
@@ -93,7 +110,10 @@ export const MoviesPage: FC<Props> = typedMemo(function MoviesPage({
                         </Text>
                         <Select
                             selectedValues={selectedYears}
-                            onSelect={setSelectedYears}
+                            onSelect={items => {
+                                setSelectedYears(items);
+                                setSelectedYearId(items[0].value);
+                            }}
                         >
                             {yearsOptions.map(renderOption)}
                         </Select>
@@ -116,7 +136,7 @@ export const MoviesPage: FC<Props> = typedMemo(function MoviesPage({
                         <MovieCard
                             movie={movie}
                             className={getBemClasses(styles, 'card')}
-                            actions={movie => <RateMovieButtons rating={Number(movie.rating)} />}
+                            actions={movie => <RateMovieButtons id={movie.id} />}
                             key={movie.id}
                         />))}
                 </FlexContainer>

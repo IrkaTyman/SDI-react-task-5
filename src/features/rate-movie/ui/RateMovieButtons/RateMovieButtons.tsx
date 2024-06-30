@@ -1,8 +1,11 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
+
+import { RatingService } from '@features/rate-movie/lib/RatingService';
 
 import Star from '@shared/assets/icons/Star.svg';
 import StarFilled from '@shared/assets/icons/StarFilled.svg';
 import { useAppSelector } from '@shared/config/redux';
+import { useRateMovieMutation } from '@shared/config/redux/services/movieService';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
 import { FlexContainer, Text } from '@shared/ui';
@@ -10,13 +13,13 @@ import { FlexContainer, Text } from '@shared/ui';
 import styles from './RateMovieButtons.module.css';
 
 export type Props = ClassNameProps & TestProps & Readonly<{
-    rating: number;
+    id: string;
 }>;
 
 const TOTAL_STARS = 5;
 
 export const RateMovieButtons: FC<Props> = typedMemo(function RateMovieButtons({
-    rating: innerRating,
+    id,
     className,
     'data-testid': dataTestId = 'RateMovieButtons',
 }) {
@@ -24,7 +27,14 @@ export const RateMovieButtons: FC<Props> = typedMemo(function RateMovieButtons({
 
     const [isHover, setIsHover] = useState(false);
     const [hoverRating, setHoverRating] = useState<number | null>(null);
-    const [rating, setRating] = useState(innerRating);
+    const [rating, setRating] = useState(RatingService.getRating(id));
+    const [rateServer] = useRateMovieMutation();
+
+    const rate = useCallback((rating: number) => {
+        RatingService.setRating(id, rating);
+        setRating(rating);
+        rateServer({ movieId: id, userRate: rating });
+    }, []);
 
     return (
         <div
@@ -51,7 +61,7 @@ export const RateMovieButtons: FC<Props> = typedMemo(function RateMovieButtons({
                             className={getBemClasses(styles, 'input')}
                             checked={currentRating === rating}
                             value={currentRating}
-                            onChange={() => setRating(currentRating)}
+                            onChange={() => rate(currentRating)}
                         />
                         {
                             currentRating <= (hoverRating ?? 0) ||
@@ -69,8 +79,6 @@ export const RateMovieButtons: FC<Props> = typedMemo(function RateMovieButtons({
                                         'star',
                                         { isActive: currentRating < rating },
                                     )}
-                                    onMouseEnter={() => setHoverRating(currentRating)}
-                                    onMouseLeave={() => setHoverRating(null)}
                                 />
                         }
                         <Text className={getBemClasses(styles, 'ratingText', { isActive: currentRating < rating })}>

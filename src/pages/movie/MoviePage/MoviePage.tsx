@@ -1,8 +1,17 @@
 import { FC } from 'react';
+import { useParams } from 'react-router-dom';
 
+import { Header } from '@widgets/Header';
+
+import { RateMovieButtons } from '@features/rate-movie';
+
+import { BACKEND_HOST } from '@shared/config/axios/host';
+import { useGetMovieQuery } from '@shared/config/redux/services/movieService';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
+import { FlexContainer, Image, Text } from '@shared/ui';
 
+import { ActorsCarousel } from './ActorsCarousel';
 import styles from './MoviePage.module.css';
 
 export type Props = ClassNameProps & TestProps & Readonly<{}>;
@@ -11,12 +20,122 @@ export const MoviePage: FC<Props> = typedMemo(function MoviePage({
     className,
     'data-testid': dataTestId = 'MoviePage',
 }) {
+    const { id } = useParams();
+    const { data: movie, isLoading } = useGetMovieQuery(id ?? '');
+
+    if (!movie) {
+        return null;
+    }
     return (
         <div
             className={getBemClasses(styles, null, null, className)}
             data-testid={dataTestId}
         >
+            <Header />
 
+            <FlexContainer
+                className={getBemClasses(styles, 'content')}
+                direction="column"
+                overflow="nowrap"
+                gap="l"
+            >
+                <FlexContainer
+                    direction="row"
+                    alignItems="start"
+                    gap="xl"
+                    className={getBemClasses(styles, 'card')}
+                >
+                    <Image
+                        alt={movie.title}
+                        src={`${BACKEND_HOST}static/images/${id}`}
+                        className={getBemClasses(styles, 'avatar')}
+                    />
+
+                    <FlexContainer
+                        direction="column"
+                        gap="m"
+                        className={getBemClasses(styles, 'info')}
+                    >
+
+                        <FlexContainer
+                            direction="row"
+                            alignItems="start"
+                            gap="m"
+                            justifyContent="space-between"
+                        >
+                            <Text className={getBemClasses(styles, 'title')}>
+                                {movie.title}
+                            </Text>
+
+                            <RateMovieButtons id={movie.id} />
+                        </FlexContainer>
+
+                        <FlexContainer
+                            direction="column"
+                            gap="s"
+                        >
+                            <FlexContainer
+                                direction="row"
+                                gap="xs"
+                                overflow="nowrap"
+                            >
+                                <Text
+                                    className={getBemClasses(styles, 'paramName')}
+                                >
+                                    Жанр:
+                                </Text>
+                                <Text className={getBemClasses(styles, 'paramValue')}>
+                                    {movie.genre}
+                                </Text>
+                            </FlexContainer>
+                            <FlexContainer
+                                direction="row"
+                                gap="xs"
+                                overflow="nowrap"
+                            >
+                                <Text
+                                    className={getBemClasses(styles, 'paramName')}
+                                >
+                                    Год выпуска:
+                                </Text>
+                                <Text className={getBemClasses(styles, 'paramValue')}>
+                                    {movie.release_year}
+                                </Text>
+                            </FlexContainer>
+                            <FlexContainer
+                                direction="row"
+                                gap="xs"
+                                overflow="nowrap"
+                            >
+                                <Text
+                                    className={getBemClasses(styles, 'paramName')}
+                                >
+                                    Рейтинг:
+                                </Text>
+                                <Text className={getBemClasses(styles, 'paramValue')}>
+                                    {movie.rating}
+                                </Text>
+                            </FlexContainer>
+                            <FlexContainer
+                                direction="row"
+                                gap="xs"
+                                overflow="nowrap"
+                            >
+                                <Text
+                                    className={getBemClasses(styles, 'paramName')}
+                                >
+                                    Описание:
+                                </Text>
+                                <Text className={getBemClasses(styles, 'paramValue')}>
+                                    {movie.description}
+                                </Text>
+                            </FlexContainer>
+                        </FlexContainer>
+                    </FlexContainer>
+                </FlexContainer>
+
+                <ActorsCarousel actors={movie.actors} />
+            </FlexContainer>
         </div>
     );
 });

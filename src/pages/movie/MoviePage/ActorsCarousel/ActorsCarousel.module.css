@@ -1,0 +1,29 @@
+.ActorsCarousel {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.ActorsCarousel__carousel {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: var(--space-l);
+    padding: 0;
+}
+
+.ActorsCarousel__actor {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    align-items: start;
+}
+
+.ActorsCarousel__actorAvatar {
+    width: 160px;
+    height: 220px;
+    object-position: center;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
