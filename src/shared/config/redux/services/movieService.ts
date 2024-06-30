@@ -4,7 +4,9 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RateMovieParams } from '@features/rate-movie';
 
 // eslint-disable-next-line @conarti/feature-sliced/layers-slices
-import { FullMovieInfo, MovieParams } from '@entities/movie';
+import { FullMovieInfo, MovieParams, ShortMovieInfo } from '@entities/movie';
+
+import { getURLWithQueryParams } from '@shared/lib';
 
 import { authHeader } from './authHeader';
 
@@ -19,10 +21,9 @@ export const movieService = createApi({
             providesTags: (res, error, arg) =>
                 [{ type: 'Movie', id: arg }],
         }),
-        getMovies: builder.query<FullMovieInfo[], MovieParams>({
+        getMovies: builder.query<{search_result: ShortMovieInfo[]}, MovieParams>({
             query: params => ({
-                url: 'search',
-                body: params,
+                url: getURLWithQueryParams('search', { title: params.title, genre: params.genre, release_year: params.releaseYear }),
                 method: 'GET',
             }),
             keepUnusedDataFor: 5,

@@ -22,6 +22,7 @@ module.exports = {
         sourceType: 'module',
     },
     rules: {
+        'quote-props': 0,
         'import/order': [
             1,
             {

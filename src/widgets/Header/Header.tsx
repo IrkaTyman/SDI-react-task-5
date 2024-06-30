@@ -1,4 +1,7 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
+
+import { MovieRouteUrls } from '@pages/movie';
 
 import { Login } from '@features/login';
 import { Logout } from '@features/logout';
@@ -29,9 +32,11 @@ export const Header: FC<Props> = typedMemo(function Header({
             className={getBemClasses(styles, null, null, className)}
             data-testid={dataTestId}
         >
-            <Text className={getBemClasses(styles, 'logo')}>
-                Фильмопоиск
-            </Text>
+            <Link to={MovieRouteUrls.Main}>
+                <Text className={getBemClasses(styles, 'logo')}>
+                    Фильмопоиск
+                </Text>
+            </Link>
 
             <FlexContainer
                 direction="row"

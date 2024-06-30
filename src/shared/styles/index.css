@@ -8,3 +8,14 @@
     font-size: var(--body-font-size);
     line-height: var(--body-line-height);
 }
+
+body, #root {
+    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+}

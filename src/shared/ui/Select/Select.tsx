@@ -100,10 +100,7 @@ export const Select = typedMemo(function Select<TValue extends AvailableSelectIt
     const [selectedValues, setSelectedValues] = useState(selectedValuesProp ?? []);
 
     useEffect(() => {
-        if (selectedValuesProp == null) {
-            return;
-        }
-        setSelectedValues(selectedValuesProp);
+        setSelectedValues(selectedValuesProp ?? []);
     }, [selectedValuesProp]);
 
     const onSelectWrapper = useCallback(async (values: SelectItem<TValue>[]) => {

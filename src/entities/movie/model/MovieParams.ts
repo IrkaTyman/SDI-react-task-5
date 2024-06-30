@@ -1,5 +1,5 @@
 export type MovieParams = Partial<{
     title: string;
-    release_year: number;
+    releaseYear: string;
     genre: string;
 }>;

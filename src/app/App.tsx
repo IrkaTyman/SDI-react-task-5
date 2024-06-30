@@ -5,12 +5,7 @@ import { AppRouter } from './providers/router/AppRouter';
 import '@shared/styles/index.css';
 
 const App = () => {
-    const { t } = useTranslation();
-    return (
-        <div>
-            <AppRouter />
-        </div>
-    );
+    return <AppRouter />;
 };
 
 export default App;

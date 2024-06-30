@@ -1,6 +1,6 @@
 export namespace TokenService {
     export function getToken() {
-        return localStorage.get('token');
+        return localStorage.getItem('token');
     }
 
     export function setToken(token: string) {

@@ -1,3 +1,38 @@
 .MovieCard {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    padding: var(--space-l);
+    cursor: pointer;
+}
 
+.MovieCard__avatar {
+    width: 100px;
+    height: 120px;
+    border-radius: var(--border-radius);
+    object-fit: cover;
+    object-position: center;
+    overflow: hidden;
+}
+
+.MovieCard__title {
+    font-size: var(--header-3-font-size);
+    line-height: var(--header-3-font-size);
+    font-weight: var(--font-weight-bold);
+}
+
+.MovieCard__paramName {
+    flex-basis: 90px;
+    width: 90px;
+    flex-shrink: 0;
+    color: var(--help-text-color);
+}
+
+.MovieCard__paramValue {
+    max-width: 100%;
+    flex: 1;
+}
+
+.MovieCard__info {
+    flex: 1;
+    width: 100%;
 }

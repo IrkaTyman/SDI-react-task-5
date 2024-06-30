@@ -64,11 +64,11 @@ export const Option = typedMemo(function Option<TValue extends AvailableSelectIt
     } = context;
 
     const disabled = useMemo(
-        () => value == null ? false : disabledValues != null && disabledValues.includes(value),
+        () => value === undefined ? false : disabledValues != null && disabledValues.includes(value),
         [disabledValues, value],
     );
     const selected = useMemo(
-        () => innerSelected || (value == null ? false : selectedValues.find(x => x.value === value) != null),
+        () => innerSelected || (value === undefined ? false : selectedValues.find(x => x.value === value) != null),
         [value, selectedValues, innerSelected],
     );
 

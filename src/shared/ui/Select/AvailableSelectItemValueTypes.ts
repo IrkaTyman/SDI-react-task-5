@@ -1,1 +1,1 @@
-export type AvailableSelectItemValueTypes = number | string | boolean | object | null;
+export type AvailableSelectItemValueTypes = number | string | boolean | object | null | undefined;
