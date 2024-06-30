@@ -1,16 +1,13 @@
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-
-import App from './app/App';
-
-import '@shared/config/i18n';
-import { ErrorBoundary } from '@app/providers/ErrorBoundary';
-
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toast';
+
+import { ErrorBoundary } from '@app/providers/ErrorBoundary';
 
 import { store } from '@shared/config/redux';
 
-import { ToastContainer } from 'react-toast';
+import App from './app/App';
 
 const root = createRoot(document.getElementById('root')!);
 root.render(

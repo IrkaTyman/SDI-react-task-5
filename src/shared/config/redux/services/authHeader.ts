@@ -1,6 +1,6 @@
 import { FetchBaseQueryArgs } from '@reduxjs/toolkit/query';
 
-import { BACKEND_API_HOST } from '@shared/config/axios/host';
+import { BACKEND_API_HOST } from '@shared/config/redux/hosts';
 import { TokenService } from '@shared/lib';
 
 export const authHeader = (): FetchBaseQueryArgs => {
