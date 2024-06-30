@@ -38,6 +38,8 @@ export const movieService = createApi({
                 },
                 method: 'POST',
             }),
+            invalidatesTags: (res, error, arg) =>
+                [{ type: 'Movie', id: arg.movieId }],
         }),
     }),
 });
