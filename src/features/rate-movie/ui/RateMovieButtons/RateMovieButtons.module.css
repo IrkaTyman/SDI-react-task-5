@@ -1,3 +1,47 @@
 .RateMovieButtons {
-
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs)
 }
+
+.RateMovieButtons__rating {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--space-xxs);
+}
+
+.RateMovieButtons:not(.RateMovieButtons_disabled) .RateMovieButtons__rating {
+    cursor: pointer;
+}
+
+.RateMovieButtons__input {
+    display: none;
+}
+
+.RateMovieButtons__star {
+    width: var(--icon-size-s);
+    height: var(--icon-size-s);
+    fill: var(--help-text-color);
+}
+
+.RateMovieButtons__star_isActive {
+    fill: var(--primary-color);
+}
+
+.RateMovieButtons:not(.RateMovieButtons_disabled):hover .RateMovieButtons__star {
+    fill: var(--help-text-color);
+}
+
+.RateMovieButtons__ratingText{
+    color: var(--help-text-color);
+}
+
+.RateMovieButtons__ratingText_isActive {
+    color: var(--text-color);
+}
+
+.RateMovieButtons:not(.RateMovieButtons_disabled):hover .RateMovieButtons__ratingText {
+    color: var(--help-text-color);
+}
+

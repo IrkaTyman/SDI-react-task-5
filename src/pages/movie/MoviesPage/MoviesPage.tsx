@@ -2,6 +2,8 @@ import { FC, useMemo, useState } from 'react';
 
 import { Header } from '@widgets/Header';
 
+import { RateMovieButtons } from '@features/rate-movie';
+
 import { GENRES_MAP, MovieParams } from '@entities/movie';
 import { YEARS } from '@entities/movie/model/Years';
 import { MovieCard } from '@entities/movie/ui/MovieCard';
@@ -114,7 +116,7 @@ export const MoviesPage: FC<Props> = typedMemo(function MoviesPage({
                         <MovieCard
                             movie={movie}
                             className={getBemClasses(styles, 'card')}
-                            actions={() => null}
+                            actions={movie => <RateMovieButtons rating={Number(movie.rating)} />}
                             key={movie.id}
                         />))}
                 </FlexContainer>
