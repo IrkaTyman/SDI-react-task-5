@@ -1,14 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { LoginParams } from '@features/login/model/LoginParams';
 
-import { authHeader } from './authHeader';
+import { axiosBaseQuery } from './axiosBaseHeader';
 
-// Building api for authentication
 export const authService = createApi({
     reducerPath: 'authApi',
-    baseQuery: fetchBaseQuery(authHeader()),
-    // building the endpoints
+    baseQuery: axiosBaseQuery(),
     endpoints: builder => ({
         login: builder.mutation<{token: string}, LoginParams>({
             query: credentials => ({

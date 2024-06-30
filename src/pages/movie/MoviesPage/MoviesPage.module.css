@@ -1,16 +1,8 @@
 .MoviesPage {
     width: 100%;
-    min-height: 100vh;
     height: 100%;
-    display: flex;
-    flex-direction: column;
     background-color: var(--background-color);
-}
-
-.MoviesPage__content {
-    width: 100%;
     flex: 1;
-    height: 100%;
     padding: 20px 32px;
 }
 

@@ -1,22 +1,23 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 
-// eslint-disable-next-line @conarti/feature-sliced/layers-slices
 import { RateMovieParams } from '@features/rate-movie';
 
-// eslint-disable-next-line @conarti/feature-sliced/layers-slices
 import { FullMovieInfo, MovieParams, ShortMovieInfo } from '@entities/movie';
 
 import { getURLWithQueryParams } from '@shared/lib';
 
-import { authHeader } from './authHeader';
+import { axiosBaseQuery } from './axiosBaseHeader';
 
 export const movieService = createApi({
     reducerPath: 'movieApi',
-    baseQuery: fetchBaseQuery(authHeader()),
+    baseQuery: axiosBaseQuery(),
     tagTypes: ['Movie'],
     endpoints: builder => ({
         getMovie: builder.query<FullMovieInfo, string>({
-            query: id => `movie/${id}`,
+            query: id => ({
+                url: `movie/${id}`,
+                method: 'GET',
+            }),
             keepUnusedDataFor: 5,
             providesTags: (res, error, arg) =>
                 [{ type: 'Movie', id: arg }],

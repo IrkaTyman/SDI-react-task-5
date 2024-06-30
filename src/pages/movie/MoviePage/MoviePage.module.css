@@ -1,12 +1,8 @@
 .MoviePage {
     width: 100%;
-    min-height: 100vh;
+    flex: 1;
     height: 100%;
     background-color: var(--background-color);
-}
-
-.MoviePage__content {
-    width: 100%;
     padding: 20px 32px;
 }
 

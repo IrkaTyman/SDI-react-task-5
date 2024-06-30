@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 
 import { RatingService } from '@features/rate-movie/lib/RatingService';
 
@@ -7,9 +7,10 @@ import StarFilled from '@shared/assets/icons/StarFilled.svg';
 import { useAppDispatch, useAppSelector } from '@shared/config/redux';
 import { useRateMovieMutation } from '@shared/config/redux/services/movieService';
 import { logout } from '@shared/config/redux/slices/authSlice';
+import { useDebounceState } from '@shared/hooks';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
-import { FlexContainer, Text } from '@shared/ui';
+import { Text } from '@shared/ui';
 
 import styles from './RateMovieButtons.module.css';
 
@@ -30,19 +31,24 @@ export const RateMovieButtons: FC<Props> = typedMemo(function RateMovieButtons({
     const [isHover, setIsHover] = useState(false);
     const [hoverRating, setHoverRating] = useState<number | null>(null);
     const [rating, setRating] = useState(RatingService.getRating(id));
+
+    const debouncedRating = useDebounceState(rating, 300);
     const [rateServer] = useRateMovieMutation();
 
-    const rate = useCallback((rating: number) => {
-        RatingService.setRating(id, rating);
-        setRating(rating);
-        rateServer({ movieId: id, userRate: rating })
-            .unwrap()
-            .catch(error => {
-                if (error.response.status === 401) {
-                    dispatch(logout());
-                }
-            });
-    }, []);
+    useEffect(() => {
+        const prevRating = RatingService.getRating(id);
+        if (isAuth && prevRating !== debouncedRating) {
+            rateServer({ movieId: id, userRate: debouncedRating })
+                .unwrap()
+                .catch(error => {
+                    if (error.status === 401) {
+                        dispatch(logout());
+                    }
+                    setRating(prevRating);
+                });
+            RatingService.setRating(id, debouncedRating);
+        }
+    }, [debouncedRating, rateServer, id, dispatch]);
 
     return (
         <div
@@ -70,7 +76,7 @@ export const RateMovieButtons: FC<Props> = typedMemo(function RateMovieButtons({
                             className={getBemClasses(styles, 'input')}
                             checked={currentRating === rating}
                             value={currentRating}
-                            onChange={() => rate(currentRating)}
+                            onChange={() => setRating(currentRating)}
                         />
                         {
                             currentRating <= (hoverRating ?? 0) ||

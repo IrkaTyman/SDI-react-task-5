@@ -2,8 +2,6 @@ import { FC, useEffect, useMemo, useState } from 'react';
 
 import { EmptyMovies } from '@pages/movie/MoviesPage/EmptyMovies';
 
-import { Header } from '@widgets/Header';
-
 import { RateMovieButtons } from '@features/rate-movie';
 
 import { GENRES_MAP, MovieParams } from '@entities/movie';
@@ -64,88 +62,83 @@ export const MoviesPage: FC<Props> = typedMemo(function MoviesPage({
     }, [selectedGenreId]);
 
     return (
-        <div
+        <FlexContainer
             className={getBemClasses(styles, null, null, className)}
-            data-testid={dataTestId}
+            direction="row"
+            overflow="nowrap"
+            alignItems="stretch"
+            gap="l"
         >
-            <Header />
             <FlexContainer
-                className={getBemClasses(styles, 'content')}
-                direction="row"
-                overflow="nowrap"
-                alignItems="stretch"
-                gap="l"
+                direction="column"
+                gap="m"
+                className={getBemClasses(styles, 'filters')}
             >
+                <Text className={getBemClasses(styles, 'filtersTitle')}>
+                    Фильтры
+                </Text>
+
                 <FlexContainer
                     direction="column"
-                    gap="m"
-                    className={getBemClasses(styles, 'filters')}
+                    gap="xxs"
+                    className={getBemClasses(styles, 'filter')}
                 >
-                    <Text className={getBemClasses(styles, 'filtersTitle')}>
-                        Фильтры
+                    <Text>
+                        Жанр
                     </Text>
-
-                    <FlexContainer
-                        direction="column"
-                        gap="xxs"
-                        className={getBemClasses(styles, 'filter')}
+                    <Select
+                        selectedValues={selectedGenres}
+                        onSelect={items => {
+                            setSelectedGenres(items);
+                            setSelectedGenreId(items[0].value);
+                        }}
                     >
-                        <Text>
-                            Жанр
-                        </Text>
-                        <Select
-                            selectedValues={selectedGenres}
-                            onSelect={items => {
-                                setSelectedGenres(items);
-                                setSelectedGenreId(items[0].value);
-                            }}
-                        >
-                            {genresOptions.map(renderOption)}
-                        </Select>
-                    </FlexContainer>
-                    <FlexContainer
-                        direction="column"
-                        gap="xxs"
-                        className={getBemClasses(styles, 'filter')}
-                    >
-                        <Text>
-                            Год выпуска
-                        </Text>
-                        <Select
-                            selectedValues={selectedYears}
-                            onSelect={items => {
-                                setSelectedYears(items);
-                                setSelectedYearId(items[0].value);
-                            }}
-                        >
-                            {yearsOptions.map(renderOption)}
-                        </Select>
-                    </FlexContainer>
+                        {genresOptions.map(renderOption)}
+                    </Select>
                 </FlexContainer>
                 <FlexContainer
-                    gap="m"
                     direction="column"
-                    className={getBemClasses(styles, 'cards')}
+                    gap="xxs"
+                    className={getBemClasses(styles, 'filter')}
                 >
-                    <Input
-                        className={getBemClasses(styles, 'search')}
-                        value={title ?? ''}
-                        onChange={event => setTitle(event.target.value)}
-                        onBlur={event => setTitle(event.target.value.trim())}
-                        startContent={<Search className={getBemClasses(styles, 'searchIcon')} />}
-                    />
-
-                    {isLoading ? <Loader /> : null}
-                    {data?.search_result.map(movie => (
-                        <MovieCard
-                            movie={movie}
-                            className={getBemClasses(styles, 'card')}
-                            actions={movie => <RateMovieButtons id={movie.id} />}
-                            key={movie.id}
-                        />))}
-                    {data?.search_result?.length === 0 && <EmptyMovies />}
+                    <Text>
+                        Год выпуска
+                    </Text>
+                    <Select
+                        selectedValues={selectedYears}
+                        onSelect={items => {
+                            setSelectedYears(items);
+                            setSelectedYearId(items[0].value);
+                        }}
+                    >
+                        {yearsOptions.map(renderOption)}
+                    </Select>
                 </FlexContainer>
             </FlexContainer>
-        </div>
+            <FlexContainer
+                gap="m"
+                direction="column"
+                overflow="nowrap"
+                className={getBemClasses(styles, 'cards')}
+            >
+                <Input
+                    className={getBemClasses(styles, 'search')}
+                    value={title ?? ''}
+                    onChange={event => setTitle(event.target.value)}
+                    onBlur={event => setTitle(event.target.value.trim())}
+                    startContent={<Search className={getBemClasses(styles, 'searchIcon')} />}
+                />
+
+                {isLoading ? <Loader /> : null}
+                {data?.search_result.map(movie => (
+                    <MovieCard
+                        movie={movie}
+                        className={getBemClasses(styles, 'card')}
+                        actions={movie => <RateMovieButtons id={movie.id} />}
+                        key={movie.id}
+                    />))}
+                {data?.search_result?.length === 0 && <EmptyMovies />}
+            </FlexContainer>
+        </FlexContainer>
     );
 });

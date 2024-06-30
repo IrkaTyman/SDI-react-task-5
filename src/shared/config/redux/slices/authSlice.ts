@@ -19,6 +19,7 @@ export const authSlice = createSlice({
         },
         logout: state => {
             state.isAuth = false;
+            TokenService.deleteToken();
         },
     },
 });

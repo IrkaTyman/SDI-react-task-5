@@ -2,6 +2,9 @@
     padding: 24px 32px;
     background-color: #333333;
     width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: var(--z-index-header)
 }
 
 .Header__logo {
