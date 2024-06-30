@@ -1,7 +1,8 @@
 .RateMovieButtons {
     display: flex;
     align-items: center;
-    gap: var(--space-xs)
+    gap: var(--space-xs);
+    cursor: default;
 }
 
 .RateMovieButtons__rating {

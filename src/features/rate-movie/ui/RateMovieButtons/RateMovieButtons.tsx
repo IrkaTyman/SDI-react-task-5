@@ -4,8 +4,9 @@ import { RatingService } from '@features/rate-movie/lib/RatingService';
 
 import Star from '@shared/assets/icons/Star.svg';
 import StarFilled from '@shared/assets/icons/StarFilled.svg';
-import { useAppSelector } from '@shared/config/redux';
+import { useAppDispatch, useAppSelector } from '@shared/config/redux';
 import { useRateMovieMutation } from '@shared/config/redux/services/movieService';
+import { logout } from '@shared/config/redux/slices/authSlice';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
 import { FlexContainer, Text } from '@shared/ui';
@@ -24,6 +25,7 @@ export const RateMovieButtons: FC<Props> = typedMemo(function RateMovieButtons({
     'data-testid': dataTestId = 'RateMovieButtons',
 }) {
     const isAuth = useAppSelector(state => state.auth.isAuth);
+    const dispatch = useAppDispatch();
 
     const [isHover, setIsHover] = useState(false);
     const [hoverRating, setHoverRating] = useState<number | null>(null);
@@ -33,7 +35,13 @@ export const RateMovieButtons: FC<Props> = typedMemo(function RateMovieButtons({
     const rate = useCallback((rating: number) => {
         RatingService.setRating(id, rating);
         setRating(rating);
-        rateServer({ movieId: id, userRate: rating });
+        rateServer({ movieId: id, userRate: rating })
+            .unwrap()
+            .catch(error => {
+                if (error.response.status === 401) {
+                    dispatch(logout());
+                }
+            });
     }, []);
 
     return (
@@ -42,6 +50,7 @@ export const RateMovieButtons: FC<Props> = typedMemo(function RateMovieButtons({
             onMouseLeave={() => isAuth && setIsHover(false)}
             className={getBemClasses(styles, null, { disabled: !isAuth }, className)}
             data-testid={dataTestId}
+            onClick={event => event.stopPropagation()}
         >
             {[...Array(TOTAL_STARS)].map((star, index) => {
                 const currentRating = index + 1;
@@ -70,18 +79,18 @@ export const RateMovieButtons: FC<Props> = typedMemo(function RateMovieButtons({
                                     className={getBemClasses(
                                         styles,
                                         'star',
-                                        { isActive: currentRating < rating },
+                                        { isActive: currentRating <= rating },
                                     )}
                                 />
                                 : <Star
                                     className={getBemClasses(
                                         styles,
                                         'star',
-                                        { isActive: currentRating < rating },
+                                        { isActive: currentRating <= rating },
                                     )}
                                 />
                         }
-                        <Text className={getBemClasses(styles, 'ratingText', { isActive: currentRating < rating })}>
+                        <Text className={getBemClasses(styles, 'ratingText', { isActive: currentRating <= rating })}>
                             {currentRating}
                         </Text>
                     </label>

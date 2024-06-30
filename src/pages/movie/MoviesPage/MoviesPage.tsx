@@ -1,5 +1,7 @@
 import { FC, useEffect, useMemo, useState } from 'react';
 
+import { EmptyMovies } from '@pages/movie/MoviesPage/EmptyMovies';
+
 import { Header } from '@widgets/Header';
 
 import { RateMovieButtons } from '@features/rate-movie';
@@ -13,7 +15,7 @@ import { useGetMoviesQuery } from '@shared/config/redux/services/movieService';
 import { useDebounceState, useSearchParamState } from '@shared/hooks';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
-import { FlexContainer, Input, renderOption, Select, SelectItem, Text } from '@shared/ui';
+import { FlexContainer, Input, Loader, renderOption, Select, SelectItem, Text } from '@shared/ui';
 
 import styles from './MoviesPage.module.css';
 
@@ -71,6 +73,7 @@ export const MoviesPage: FC<Props> = typedMemo(function MoviesPage({
                 className={getBemClasses(styles, 'content')}
                 direction="row"
                 overflow="nowrap"
+                alignItems="stretch"
                 gap="l"
             >
                 <FlexContainer
@@ -132,6 +135,7 @@ export const MoviesPage: FC<Props> = typedMemo(function MoviesPage({
                         startContent={<Search className={getBemClasses(styles, 'searchIcon')} />}
                     />
 
+                    {isLoading ? <Loader /> : null}
                     {data?.search_result.map(movie => (
                         <MovieCard
                             movie={movie}
@@ -139,6 +143,7 @@ export const MoviesPage: FC<Props> = typedMemo(function MoviesPage({
                             actions={movie => <RateMovieButtons id={movie.id} />}
                             key={movie.id}
                         />))}
+                    {data?.search_result?.length === 0 && <EmptyMovies />}
                 </FlexContainer>
             </FlexContainer>
         </div>

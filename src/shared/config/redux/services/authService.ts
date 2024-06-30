@@ -10,7 +10,7 @@ export const authService = createApi({
     baseQuery: fetchBaseQuery(authHeader()),
     // building the endpoints
     endpoints: builder => ({
-        login: builder.query<LoginParams, {token: string}>({
+        login: builder.mutation<{token: string}, LoginParams>({
             query: credentials => ({
                 url: 'login',
                 method: 'POST',
@@ -21,4 +21,4 @@ export const authService = createApi({
 });
 
 // Auto generated hook - starts with use & ends on mutation
-export const { useLoginQuery } = authService;
+export const { useLoginMutation } = authService;

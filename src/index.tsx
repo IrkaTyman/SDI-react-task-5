@@ -10,12 +10,17 @@ import { Provider } from 'react-redux';
 
 import { store } from '@shared/config/redux';
 
+import { ToastContainer } from 'react-toast';
+
 const root = createRoot(document.getElementById('root')!);
 root.render(
     <ErrorBoundary>
         <Provider store={store}>
             <BrowserRouter>
                 <App />
+                <div id="modal-portal" />
+
+                <ToastContainer />
             </BrowserRouter>
         </Provider>
     </ErrorBoundary>,

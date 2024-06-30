@@ -41,6 +41,7 @@
     /* Z-indexes */
     --z-index-dropdown: 10;
     --z-index-modal: calc(var(--z-index-dropdown) + 1);
+    --z-index-toast: calc(var(--z-index-modal) + 1);
 
     /* Icon sizes */
     --icon-size-s: 16px;

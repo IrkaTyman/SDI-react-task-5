@@ -1,0 +1,13 @@
+.EmptyMovies {
+    flex: 1;
+    width: 100%;
+}
+
+.EmptyMovies__title {
+    font-size: var(--subheader-font-size);
+    line-height: var(--body-line-height);
+}
+
+.EmptyMovies__subtitle {
+    color: #999FA6;
+}

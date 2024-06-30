@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { TokenService } from '@shared/lib';
+
 export interface AuthState {
     isAuth: boolean;
 }
 
 const initialState: AuthState = {
-    isAuth: false,
+    isAuth: TokenService.getToken() !== null,
 };
 
 export const authSlice = createSlice({

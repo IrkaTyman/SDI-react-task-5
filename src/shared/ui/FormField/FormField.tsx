@@ -52,6 +52,8 @@ export type Props<TValue> = ClassNameProps & TestProps & Readonly<{
      * @param value значение поля
      */
     onChange?: (value: TValue) => void;
+
+    required?: boolean;
 }>;
 
 /**
@@ -62,6 +64,7 @@ export const FormField = typedMemo(function FormField<TValue>({
     name,
     endContent,
     className,
+    required,
     onChange,
     'data-testid': dataTestId = 'FormField',
     content,
@@ -79,7 +82,7 @@ export const FormField = typedMemo(function FormField<TValue>({
             data-testid={dataTestId}
         >
             {typeof label === 'string'
-                ? <label htmlFor={name} className={getBemClasses(styles, 'label')}>
+                ? <label htmlFor={name} className={getBemClasses(styles, 'label', { required })}>
                     {label}
                 </label>
                 : label
@@ -97,7 +100,7 @@ export const FormField = typedMemo(function FormField<TValue>({
                 }
             </div>
 
-            {isInvalid
+            {isInvalid && !!fieldMeta.error?.trim()
                 ? <Text className={getBemClasses(styles, 'error')}>
                     <ErrorMessage name={name} />
                 </Text>

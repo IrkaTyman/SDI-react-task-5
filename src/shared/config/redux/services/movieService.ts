@@ -26,7 +26,6 @@ export const movieService = createApi({
                 url: getURLWithQueryParams('search', { title: params.title, genre: params.genre, release_year: params.releaseYear }),
                 method: 'GET',
             }),
-            keepUnusedDataFor: 5,
             providesTags: ['Movie'],
         }),
         rateMovie: builder.mutation<void, RateMovieParams>({
@@ -38,7 +37,6 @@ export const movieService = createApi({
                 },
                 method: 'POST',
             }),
-            invalidatesTags: (res, error, arg) => ['Movie', { type: 'Movie', id: arg.movieId }],
         }),
     }),
 });

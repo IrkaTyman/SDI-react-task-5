@@ -37,7 +37,7 @@
     color: #fff;
 }
 
-.Button_variant_bordered:not(:hover) {
+.Button.Button_variant_bordered {
     background-color: transparent;
 }
 

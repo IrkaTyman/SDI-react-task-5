@@ -4,7 +4,17 @@
 
 .FormField__label {
     margin-bottom: 0;
-    font-weight: var(--font-weight-medium)
+    position: relative;
+}
+
+.FormField__label_required:after {
+    content: '*';
+    position: absolute;
+    color: var(--primary-color);
+    font-size: var(--body-font-size);
+    line-height: var(--body-line-height);
+    right: calc(-1 * var(--space-xxs) - 6px);
+    top: 0;
 }
 
 .FormField__field {
