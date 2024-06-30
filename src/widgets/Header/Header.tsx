@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { MovieRouteUrls } from '@pages/movie';
+import { MovieRouteUrls } from '@views/movie';
 
 import { Login } from '@features/login';
 import { Logout } from '@features/logout';

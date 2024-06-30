@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:prod": "webpack --env mode=production",
-    "build:dev": "webpack --env mode=development",
-    "start": "webpack serve --env port=3000",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "test:unit": "jest --config jest.config.ts",
     "test:ui": "npx loki test",
     "test:ui:ok": "npx loki approve",
@@ -90,6 +90,7 @@
     "@types/react-dom": "^18.2.21",
     "bem-css-modules": "^1.4.3",
     "loki": "^0.34.0",
+    "next": "^14.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3"

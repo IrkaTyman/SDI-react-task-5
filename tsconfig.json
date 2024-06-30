@@ -1,28 +1,72 @@
 {
   "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "outDir": "./build/",
     "noImplicitAny": true,
     "module": "ESNext",
     "target": "es5",
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "baseUrl": ".",
+    "incremental": true,
     "paths": {
-      "@shared/*": ["./src/shared/*"],
-      "@entities/*": ["./src/entities/*"],
-      "@features/*": ["./src/features/*"],
-      "@widgets/*": ["./src/widgets/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@app/*": ["./src/app/*"]
+      "@shared/*": [
+        "./src/shared/*"
+      ],
+      "@entities/*": [
+        "./src/entities/*"
+      ],
+      "@features/*": [
+        "./src/features/*"
+      ],
+      "@widgets/*": [
+        "./src/widgets/*"
+      ],
+      "@views/*": [
+        "./src/views/*"
+      ],
+      "@app/*": [
+        "./src/app/*"
+      ]
     },
     "strictNullChecks": true,
     "allowJs": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
     }
-  }
+  },
+  "plugins": [
+    {
+      "name": "next"
+    }
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "./dist/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

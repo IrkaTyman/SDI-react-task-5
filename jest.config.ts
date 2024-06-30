@@ -12,7 +12,7 @@ const config: Config = {
     moduleNameMapper: {
         '^__mocks__/(.*)$': '<rootDir>/__mocks__/$1',
         '^@app/(.*)$': '<rootDir>/src/app/$1',
-        '^@pages/(.*)$': '<rootDir>/src/pages/$1',
+        '^@views/(.*)$': '<rootDir>/src/pages/$1',
         '^@widgets/(.*)$': '<rootDir>/src/widgets/$1',
         '^@features/(.*)$': '<rootDir>/src/features/$1',
         '^@entities/(.*)$': '<rootDir>/src/entities/$1',
@@ -24,9 +24,9 @@ const config: Config = {
         '\\.svg$': '<rootDir>/__mocks__/svgMock.tsx',
     },
     transform: {
-        '^.+\\.(j|t)sx?$': ['ts-jest', {isolatedModules: true}],
+        '^.+\\.(j|t)sx?$': ['ts-jest', { isolatedModules: true }],
     },
-    setupFilesAfterEnv: ['<rootDir>/src/setup-test.ts']
+    setupFilesAfterEnv: ['<rootDir>/src/setup-test.ts'],
 };
 
 export default config;

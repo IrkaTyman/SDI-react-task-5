@@ -1,7 +1,5 @@
 import { FC, useEffect, useMemo, useState } from 'react';
 
-import { EmptyMovies } from '@pages/movie/MoviesPage/EmptyMovies';
-
 import { Header } from '@widgets/Header';
 
 import { RateMovieButtons } from '@features/rate-movie';
@@ -17,6 +15,7 @@ import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
 import { FlexContainer, Input, Loader, renderOption, Select, SelectItem, Text } from '@shared/ui';
 
+import { EmptyMovies } from './EmptyMovies';
 import styles from './MoviesPage.module.css';
 
 export type Props = ClassNameProps & TestProps & Readonly<{}>;
@@ -68,7 +67,6 @@ export const MoviesPage: FC<Props> = typedMemo(function MoviesPage({
             className={getBemClasses(styles, null, null, className)}
             data-testid={dataTestId}
         >
-            <Header />
             <FlexContainer
                 className={getBemClasses(styles, 'content')}
                 direction="row"

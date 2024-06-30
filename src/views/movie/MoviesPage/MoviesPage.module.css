@@ -1,6 +1,6 @@
 .MoviesPage {
     width: 100%;
-    min-height: 100vh;
+    flex: 1;
     height: 100%;
     display: flex;
     flex-direction: column;

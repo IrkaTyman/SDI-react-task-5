@@ -14,7 +14,7 @@ export function buildResolvers(options: BuildOptions): webpack.ResolveOptions {
             '@entities': path.resolve(options.paths.src, 'entities'),
             '@features': path.resolve(options.paths.src, 'features'),
             '@widgets': path.resolve(options.paths.src, 'widgets'),
-            '@pages': path.resolve(options.paths.src, 'pages'),
+            '@views': path.resolve(options.paths.src, 'views'),
             '@app': path.resolve(options.paths.src, 'app'),
         },
         mainFiles: ['index'],

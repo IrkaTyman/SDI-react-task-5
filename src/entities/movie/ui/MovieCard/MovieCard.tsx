@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { MovieRouteUrls } from '@pages/movie';
+import { MovieRouteUrls } from '@views/movie';
 
 import { BACKEND_HOST } from '@shared/config/redux/hosts';
 import { getBemClasses, typedMemo } from '@shared/lib';

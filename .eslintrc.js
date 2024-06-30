@@ -44,7 +44,7 @@ module.exports = {
                         position: 'after',
                     },
                     {
-                        pattern: '@pages/**',
+                        pattern: '@views/**',
                         group: 'internal',
                         position: 'after',
                     },

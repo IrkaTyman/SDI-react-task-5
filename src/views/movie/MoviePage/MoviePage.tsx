@@ -14,13 +14,15 @@ import { FlexContainer, Image, Text } from '@shared/ui';
 import { ActorsCarousel } from './ActorsCarousel';
 import styles from './MoviePage.module.css';
 
-export type Props = ClassNameProps & TestProps & Readonly<{}>;
+export type Props = ClassNameProps & TestProps & Readonly<{
+    id: string;
+}>;
 
 export const MoviePage: FC<Props> = typedMemo(function MoviePage({
     className,
+    id,
     'data-testid': dataTestId = 'MoviePage',
 }) {
-    const { id } = useParams();
     const { data: movie, isLoading } = useGetMovieQuery(id ?? '');
 
     if (!movie) {
@@ -31,8 +33,6 @@ export const MoviePage: FC<Props> = typedMemo(function MoviePage({
             className={getBemClasses(styles, null, null, className)}
             data-testid={dataTestId}
         >
-            <Header />
-
             <FlexContainer
                 className={getBemClasses(styles, 'content')}
                 direction="column"

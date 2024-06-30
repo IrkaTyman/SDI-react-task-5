@@ -9,10 +9,20 @@
     line-height: var(--body-line-height);
 }
 
-body, #root {
+body {
     width: 100vw;
     min-height: 100vh;
     height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#root {
+    width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     overflow-x: hidden;
     overflow-y: auto;
 }

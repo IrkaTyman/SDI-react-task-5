@@ -1,7 +1,7 @@
-import { MoviePage } from '@pages/movie/MoviePage';
-import { MoviesPage } from '@pages/movie/MoviesPage';
-
 import { ConfigRouteProps } from '@shared/types';
+
+import { MoviePage } from './MoviePage';
+import { MoviesPage } from './MoviesPage';
 
 export const MovieRouteUrls = {
     Main: '/movies',
