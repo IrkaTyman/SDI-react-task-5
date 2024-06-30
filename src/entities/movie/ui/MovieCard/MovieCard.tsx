@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { MovieRouteUrls } from '@pages/movie';
 
-import { BACKEND_HOST } from '@shared/config/axios/host';
+import { BACKEND_HOST } from '@shared/config/redux/hosts';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
 import { FlexContainer, Image, Text } from '@shared/ui';

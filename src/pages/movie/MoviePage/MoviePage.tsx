@@ -5,7 +5,7 @@ import { Header } from '@widgets/Header';
 
 import { RateMovieButtons } from '@features/rate-movie';
 
-import { BACKEND_HOST } from '@shared/config/axios/host';
+import { BACKEND_HOST } from '@shared/config/redux/hosts';
 import { useGetMovieQuery } from '@shared/config/redux/services/movieService';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';

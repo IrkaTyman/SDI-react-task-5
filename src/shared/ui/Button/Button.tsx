@@ -1,7 +1,5 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef, ReactElement, ReactNode, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef, ReactNode, useMemo } from 'react';
 
-import { Namespace } from '@shared/config/i18n';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
 import { FlexContainer } from '@shared/ui';
@@ -46,8 +44,6 @@ export const Button = typedMemo(forwardRef<HTMLButtonElement, Props>(function Bu
     isLoading,
     ...props
 }: Props, ref) {
-    const { t } = useTranslation([Namespace.Common.ns]);
-
     const ContentComponent = useMemo((): ReactNode => {
         return isLoading
             ? <FlexContainer
@@ -57,10 +53,10 @@ export const Button = typedMemo(forwardRef<HTMLButtonElement, Props>(function Bu
                 overflow="nowrap"
             >
                 <Loader variant={'circle'} size={14} className={getBemClasses(styles, 'loader')} />
-                {props.loader ?? `${t('loading', Namespace.Common)}...`}
+                {props.loader ?? 'Загрузка...'}
             </FlexContainer>
             : props.children;
-    }, [ isLoading, props, t]);
+    }, [isLoading, props]);
 
     return (
         <button

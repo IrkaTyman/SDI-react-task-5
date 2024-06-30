@@ -1,7 +1,5 @@
 import { PropsWithChildren, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
-import { Namespace } from '@shared/config/i18n';
 import { getBemClasses, mixClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
 import { DropDown, getFlexContainerStyleClasses, SelectEmpty, Text } from '@shared/ui';
@@ -95,7 +93,6 @@ export const Select = typedMemo(function Select<TValue extends AvailableSelectIt
     className,
     'data-testid': dataTestId = 'Select',
 }: Props<TValue>) {
-    const { t } = useTranslation([Namespace.Common.ns]);
     const [isExpanded, setIsExpanded] = useState(false);
     const [selectedValues, setSelectedValues] = useState(selectedValuesProp ?? []);
 
@@ -122,7 +119,7 @@ export const Select = typedMemo(function Select<TValue extends AvailableSelectIt
             if (isMultiSelect) {
                 return (
                     <Text className={getBemClasses(styles, 'labelTextCount', { isChosen, isMultiSelect })}>
-                        {`${t('core_selected')}: ${selectedValues.length}`}
+                        {`Выбрано: ${selectedValues.length}`}
                     </Text>
                 );
             } else {
@@ -130,9 +127,9 @@ export const Select = typedMemo(function Select<TValue extends AvailableSelectIt
             }
         } else {
             if (isEmpty) {
-                text = t('not_data', Namespace.Common);
+                text = 'Нет данных';
             } else {
-                text = notSelectedLabel ?? t('select', Namespace.Common);
+                text = notSelectedLabel ?? 'Выбрать';
             }
         }
 
@@ -141,7 +138,7 @@ export const Select = typedMemo(function Select<TValue extends AvailableSelectIt
                 {text}
             </Text>
         );
-    }, [isEmpty, isMultiSelect, selectedValues, t, notSelectedLabel]);
+    }, [isEmpty, isMultiSelect, selectedValues, notSelectedLabel]);
 
     return (
         <SelectContextProvider<TValue>
