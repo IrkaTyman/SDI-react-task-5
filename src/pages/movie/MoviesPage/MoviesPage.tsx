@@ -35,8 +35,8 @@ export const MoviesPage: FC<Props> = typedMemo(function MoviesPage({
     className,
     'data-testid': dataTestId = 'MoviesPage',
 }) {
-    const [search, setSearch] = useState('');
-    const debounceSearch = useDebounceState(search, 300);
+    const [title, setTitle] = useSearchParamState('title');
+    const debounceSearch = useDebounceState(title, 300);
 
     const [selectedGenreId, setSelectedGenreId] = useSearchParamState('genre');
     const [selectedYearId, setSelectedYearId] = useSearchParamState('year');
@@ -45,7 +45,7 @@ export const MoviesPage: FC<Props> = typedMemo(function MoviesPage({
     const [selectedYears, setSelectedYears] = useState<SelectItem<string>[]>(yearsOptions.filter(year => year.value === (selectedYearId ?? '0')));
 
     const params = useMemo<MovieParams>(() => ({
-        title: debounceSearch,
+        title: debounceSearch ?? undefined,
         releaseYear: selectedYears[0]?.value === '0' ? undefined : selectedYears[0]?.value ?? undefined,
         genre: selectedGenres[0]?.value === '0' ? undefined : selectedGenres[0]?.value ?? undefined,
     }), [debounceSearch, selectedGenres, selectedYears]);
@@ -129,9 +129,9 @@ export const MoviesPage: FC<Props> = typedMemo(function MoviesPage({
                 >
                     <Input
                         className={getBemClasses(styles, 'search')}
-                        value={search}
-                        onChange={event => setSearch(event.target.value)}
-                        onBlur={event => setSearch(event.target.value.trim())}
+                        value={title ?? ''}
+                        onChange={event => setTitle(event.target.value)}
+                        onBlur={event => setTitle(event.target.value.trim())}
                         startContent={<Search className={getBemClasses(styles, 'searchIcon')} />}
                     />
 
