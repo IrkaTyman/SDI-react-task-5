@@ -1,7 +1,5 @@
 import { FC, useEffect, useState } from 'react';
 
-import { RatingService } from '@features/rate-movie/lib/RatingService';
-
 import Star from '@shared/assets/icons/Star.svg';
 import StarFilled from '@shared/assets/icons/StarFilled.svg';
 import { useAppDispatch } from '@shared/config/redux';
@@ -13,6 +11,7 @@ import { ClassNameProps, TestProps } from '@shared/types';
 import { Text } from '@shared/ui';
 
 import styles from './RateMovieButtons.module.css';
+import { RatingService } from '../../lib/RatingService';
 
 export type Props = ClassNameProps & TestProps & Readonly<{
     id: string;

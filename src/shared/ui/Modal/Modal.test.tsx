@@ -7,7 +7,7 @@ import { Modal } from './Modal';
 describe('shared/Modal', () => {
     const wrapper = createWrapper({});
 
-    it('Компонент не появился в DOM дереве, если isOpen == false и isUnmountable == true', async () => {
+    it('Компонент не появился в DOM дереве, если isOpen == false и isUnmountable == true', () => {
         render(<Modal isOpen={false} onClose={() => {}} />);
 
         const component = screen.queryByTestId('Modal');

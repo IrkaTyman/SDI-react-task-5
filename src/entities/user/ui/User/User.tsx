@@ -6,7 +6,7 @@ import { ClassNameProps, TestProps } from '@shared/types';
 
 import styles from './User.module.css';
 
-export type Props = ClassNameProps & TestProps & Readonly<{}>;
+export type Props = ClassNameProps & TestProps;
 
 export const User: FC<Props> = typedMemo(function User({
     className,

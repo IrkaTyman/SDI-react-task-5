@@ -8,7 +8,7 @@ import { Button } from '@shared/ui';
 
 import styles from './Logout.module.css';
 
-export type Props = ClassNameProps & TestProps & Readonly<{}>;
+export type Props = ClassNameProps & TestProps;
 
 export const Logout: FC<Props> = typedMemo(function Logout({
     className,

@@ -3,8 +3,7 @@ import { FC, MouseEventHandler, PropsWithChildren, useCallback, useEffect } from
 import Cross from '@shared/assets/icons/Close.svg';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
-import { Button } from '@shared/ui';
-import { Portal } from '@shared/ui/Portal';
+import { Portal } from '@shared/ui';
 
 import styles from './Modal.module.css';
 

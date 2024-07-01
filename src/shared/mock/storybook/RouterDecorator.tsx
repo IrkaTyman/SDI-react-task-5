@@ -1,8 +1,7 @@
 import { type Decorator } from '@storybook/react';
 import * as H from 'history';
-import React from 'react';
 
-import { RouterWrapper } from '@shared/mock/jest/RouterWrapper';
+import { RouterWrapper } from '@shared/mock/jest';
 
 /**
  * Storybook-декоратор для работы React-Router

@@ -22,9 +22,14 @@ export const movieService = createApi({
             providesTags: (res, error, arg) =>
                 [{ type: 'Movie', id: arg }],
         }),
-        getMovies: builder.query<{search_result: ShortMovieInfo[]}, MovieParams>({
+        getMovies: builder.query<{search_result: ShortMovieInfo[]; total_pages: number}, MovieParams>({
             query: params => ({
-                url: getURLWithQueryParams('search', { title: params.title, genre: params.genre, release_year: params.releaseYear }),
+                url: getURLWithQueryParams('search', {
+                    title: params.title,
+                    genre: params.genre,
+                    release_year: params.releaseYear,
+                    page: params.page,
+                }),
                 method: 'GET',
             }),
             providesTags: ['Movie'],

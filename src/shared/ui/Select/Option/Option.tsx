@@ -2,10 +2,7 @@ import { CSSProperties, MouseEvent, PropsWithChildren, ReactNode, useCallback, u
 
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
-import { FlexContainer } from '@shared/ui';
-import { Checkbox } from '@shared/ui/Checkbox';
-import { AvailableSelectItemValueTypes, SelectItem } from '@shared/ui/Select';
-import { Spoiler } from '@shared/ui/Spoiler';
+import { FlexContainer, Checkbox, AvailableSelectItemValueTypes, SelectItem, Spoiler } from '@shared/ui';
 
 import styles from './Option.module.css';
 import { SelectContextProps, useSelectContext } from '../SelectContext';

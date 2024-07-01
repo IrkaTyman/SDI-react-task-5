@@ -24,7 +24,7 @@ export const ActorsCarousel: FC<Props> = typedMemo(function ActorsCarousel({
         >
             <ul className={getBemClasses(styles, 'carousel')}>
                 {actors.map((actor, index) =>
-                    (<li className={getBemClasses(styles, 'actor')}>
+                    (<li className={getBemClasses(styles, 'actor')} key={index}>
                         <Image alt={actor.name} src={actor.photo} className={getBemClasses(styles, 'actorAvatar')} />
                         <Text className={getBemClasses(styles, 'actorName')}>
                             {actor.name}

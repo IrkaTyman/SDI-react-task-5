@@ -2,8 +2,7 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef, ReactNode, useMemo
 
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
-import { FlexContainer } from '@shared/ui';
-import { Loader } from '@shared/ui/Loader';
+import { FlexContainer, Loader } from '@shared/ui';
 
 import styles from './Button.module.css';
 

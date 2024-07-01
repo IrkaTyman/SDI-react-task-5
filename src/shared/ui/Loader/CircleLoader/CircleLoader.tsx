@@ -1,8 +1,7 @@
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 
 import { getBemClasses, typedMemo } from '@shared/lib';
-import { TestProps } from '@shared/types';
-import { ClassNameProps } from '@shared/types/ClassNameProps';
+import { TestProps, ClassNameProps } from '@shared/types';
 
 import styles from './CircleLoader.module.css';
 

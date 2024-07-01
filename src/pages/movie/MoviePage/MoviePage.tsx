@@ -1,8 +1,6 @@
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { Header } from '@widgets/Header';
-
 import { RateMovieButtons } from '@features/rate-movie';
 
 import { BACKEND_HOST } from '@shared/config/redux/hosts';
@@ -14,11 +12,10 @@ import { FlexContainer, Image, Loader, Text } from '@shared/ui';
 import { ActorsCarousel } from './ActorsCarousel';
 import styles from './MoviePage.module.css';
 
-export type Props = ClassNameProps & TestProps & Readonly<{}>;
+export type Props = ClassNameProps & TestProps;
 
 export const MoviePage: FC<Props> = typedMemo(function MoviePage({
     className,
-    'data-testid': dataTestId = 'MoviePage',
 }) {
     const { id } = useParams();
     const { data: movie, isLoading } = useGetMovieQuery(id ?? '');

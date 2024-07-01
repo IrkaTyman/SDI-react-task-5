@@ -3,10 +3,10 @@ import { FC, PropsWithChildren, useMemo } from 'react';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
 import { ExpandIcon, FlexContainer } from '@shared/ui';
-import { useSelectContext } from '@shared/ui/Select/SelectContext';
-import { SelectedItemBadge } from '@shared/ui/Select/SelectedItemBadge/SelectedItemBadge';
 
 import styles from './Label.module.css';
+import { useSelectContext } from '../SelectContext';
+import { SelectedItemBadge } from '../SelectedItemBadge/SelectedItemBadge';
 
 export type Props = PropsWithChildren & ClassNameProps & TestProps & Readonly<{
     /**

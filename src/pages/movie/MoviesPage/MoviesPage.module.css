@@ -45,3 +45,31 @@
     line-height: var(--subheader-line-height);
     margin-bottom: 4px;
 }
+
+.MoviesPage__pagButton {
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
+    box-shadow: 0px 0px 4px 0px #0000004D;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none
+
+}
+
+.MoviesPage__pagButtonIcon {
+    width: var(--icons-size-m);
+    height: var(--icons-size-m);
+    fill: var(--text-color)
+}
+
+.MoviesPage__pagButton:disabled {
+    background-color: var(--disabled-background-color);
+}
+
+.MoviesPage__pagButton:disabled .MoviesPage__pagButtonIcon {
+    fill: var(--help-text-color);
+}
