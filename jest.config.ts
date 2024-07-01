@@ -24,9 +24,9 @@ const config: Config = {
         '\\.svg$': '<rootDir>/__mocks__/svgMock.tsx',
     },
     transform: {
-        '^.+\\.(j|t)sx?$': ['ts-jest', {isolatedModules: true}],
+        '^.+\\.(j|t)sx?$': ['ts-jest', { isolatedModules: true }],
     },
-    setupFilesAfterEnv: ['<rootDir>/src/setup-test.ts']
+    setupFilesAfterEnv: ['<rootDir>/src/setup-test.ts'],
 };
 
 export default config;

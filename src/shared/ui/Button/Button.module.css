@@ -48,7 +48,7 @@
 }
 
 .Button_variant_solid .Button__loader > div > div {
-    border-color: #fff transparent transparent transparent;
+    border-color: #fff transparent transparent;
 }
 
 .Button .Button__loader {

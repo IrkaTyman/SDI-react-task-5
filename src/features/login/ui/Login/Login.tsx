@@ -14,7 +14,7 @@ import { Button, FlexContainer, FormField, Input, Modal, Text } from '@shared/ui
 
 import styles from './Login.module.css';
 
-export type Props = ClassNameProps & TestProps & Readonly<{}>;
+export type Props = ClassNameProps & TestProps;
 
 const initialValue: LoginParams = {
     username: '',
@@ -28,7 +28,6 @@ const validationSchema = Yup.object({
 
 export const Login: FC<Props> = typedMemo(function Login({
     className,
-    'data-testid': dataTestId = 'Login',
 }) {
     const [isOpen, setIsOpen] = useState(false);
     const toggleIsOpen = useCallback(() => setIsOpen(isOpen => !isOpen), []);
@@ -44,7 +43,7 @@ export const Login: FC<Props> = typedMemo(function Login({
                     TokenService.setToken(result.token);
                 }
             })
-            .catch(error => {
+            .catch(() => {
                 toast.error('Вы ввели неверный пароль или почту');
             });
     }, [loginServer, dispatch]);

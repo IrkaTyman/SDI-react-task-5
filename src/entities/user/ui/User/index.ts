@@ -1,2 +1,2 @@
-export {User} from './User';
-export type {Props as UserProps} from './User'
+export { User } from './User';
+export type { Props as UserProps } from './User';

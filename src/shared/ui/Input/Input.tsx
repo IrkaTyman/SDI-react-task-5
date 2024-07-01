@@ -1,4 +1,4 @@
-import {ChangeEventHandler, DetailedHTMLProps, forwardRef, InputHTMLAttributes, ReactNode, useCallback} from 'react';
+import { ChangeEventHandler, DetailedHTMLProps, forwardRef, InputHTMLAttributes, ReactNode, useCallback } from 'react';
 
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
@@ -39,11 +39,12 @@ export const Input = typedMemo(forwardRef<HTMLInputElement, Props>(function Inpu
     return (
         <label
             className={getBemClasses(
-            styles,
-            null,
-            {invalid},
-            className,
-        )}>
+                styles,
+                null,
+                { invalid },
+                className,
+            )}
+        >
             {startContent}
             <input
                 {...inputProps}

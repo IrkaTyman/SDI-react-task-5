@@ -1,9 +1,7 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 import { Actor } from '@entities/movie';
 
-import ArrowLeft from '@shared/assets/icons/ArrowLeft.svg';
-import ArrowRight from '@shared/assets/icons/ArrowRight.svg';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
 import { Image, Text } from '@shared/ui';

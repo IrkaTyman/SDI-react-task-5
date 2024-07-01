@@ -8,20 +8,20 @@ import { Logout } from '@features/logout';
 
 import { User } from '@entities/user';
 
-import { useAppSelector } from '@shared/config/redux';
+import { useIsAuthSelector } from '@shared/hooks';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
 import { FlexContainer, Text } from '@shared/ui';
 
 import styles from './Header.module.css';
 
-export type Props = ClassNameProps & TestProps & Readonly<{}>;
+export type Props = ClassNameProps & TestProps;
 
 export const Header: FC<Props> = typedMemo(function Header({
     className,
     'data-testid': dataTestId = 'Header',
 }) {
-    const isAuth = useAppSelector(state => state.auth.isAuth);
+    const isAuth = useIsAuthSelector();
 
     return (
         <FlexContainer

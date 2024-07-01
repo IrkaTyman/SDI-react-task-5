@@ -1,13 +1,13 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { RatingService } from '@features/rate-movie/lib/RatingService';
 
 import Star from '@shared/assets/icons/Star.svg';
 import StarFilled from '@shared/assets/icons/StarFilled.svg';
-import { useAppDispatch, useAppSelector } from '@shared/config/redux';
+import { useAppDispatch } from '@shared/config/redux';
 import { useRateMovieMutation } from '@shared/config/redux/services/movieService';
 import { logout } from '@shared/config/redux/slices/authSlice';
-import { useDebounceState } from '@shared/hooks';
+import { useDebounceState, useIsAuthSelector } from '@shared/hooks';
 import { getBemClasses, typedMemo } from '@shared/lib';
 import { ClassNameProps, TestProps } from '@shared/types';
 import { Text } from '@shared/ui';
@@ -25,7 +25,7 @@ export const RateMovieButtons: FC<Props> = typedMemo(function RateMovieButtons({
     className,
     'data-testid': dataTestId = 'RateMovieButtons',
 }) {
-    const isAuth = useAppSelector(state => state.auth.isAuth);
+    const isAuth = useIsAuthSelector();
     const dispatch = useAppDispatch();
 
     const [isHover, setIsHover] = useState(false);

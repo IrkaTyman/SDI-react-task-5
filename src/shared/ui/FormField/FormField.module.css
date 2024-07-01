@@ -7,7 +7,7 @@
     position: relative;
 }
 
-.FormField__label_required:after {
+.FormField__label_required::after {
     content: '*';
     position: absolute;
     color: var(--primary-color);

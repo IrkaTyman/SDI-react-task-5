@@ -1,6 +1,7 @@
-import {type Decorator} from '@storybook/react';
-import React from 'react';
+import { type Decorator } from '@storybook/react';
 import * as H from 'history';
+import React from 'react';
+
 import { RouterWrapper } from '@shared/mock/jest/RouterWrapper';
 
 /**
@@ -10,7 +11,7 @@ import { RouterWrapper } from '@shared/mock/jest/RouterWrapper';
  */
 export const RouterDecorator: (routePath: string, initialEntries?: H.LocationDescriptor[]) => Decorator =
     (routePath, initialEntries) => {
-        return (function MemoryRouterWrapper(Story) {
-            return RouterWrapper(routePath,initialEntries)(<Story/>)
-        });
+        return function MemoryRouterWrapper(Story) {
+            return RouterWrapper(routePath, initialEntries)(<Story />);
+        };
     };
